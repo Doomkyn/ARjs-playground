@@ -24,6 +24,16 @@
   }
 </style>
 
+  <script>
+  AFRAME.registerComponent('markerhandler', {
+    init: function () {
+      this.el.sceneEl.addEventListener('markerFound', (m) => {
+        // redirect to custom URL
+        console.log(m);
+      });
+    }
+  });
+</script>
 <body style="margin : 0px; overflow: hidden;">
   <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
   <div class="arjs-loader">
@@ -41,15 +51,15 @@
     <!-- on 'url' use the path to the Image Descriptors created before. -->
     <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
     <a-nft
+      markerhandler
       type="nft"
-      url="./arjs/markers/rocks"
+      url="./markers/rocks"
       smooth="true"
       smoothCount="10"
       smoothTolerance=".01"
       smoothThreshold="5"
     >
       <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-      <h1>FOUND</h1>
     </a-nft>
     <!-- static camera that moves according to the device movemenents -->
     <a-entity camera></a-entity>
